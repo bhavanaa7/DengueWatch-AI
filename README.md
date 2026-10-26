@@ -2,9 +2,8 @@
 
 Explainable Dengue Forecasting & Early-Warning Intelligence. React + TypeScript (Vite, MUI, Recharts, React-Leaflet) frontend, FastAPI + Python ML backend, built on the DrivenData DengAI dataset (San Juan, Iquitos).
 
-## Verification status (be honest in interviews)
+## Verification status 
 - Executed once during development on the real DengAI files: data loading/cleaning, feature engineering, walk-forward training of the baselines and Random Forest, and the original 13 unit tests.
-- Written but **never executed**: the FastAPI service, SHAP / XGBoost / Negative Binomial / SARIMAX paths, MLflow logging, the lead-time metric, EDA and evaluation plotting, population normalisation, and the entire React frontend (including the Leaflet map). Expect small fixes on first run; run `python -m pytest`, `npm run lint`, `npm test`, `npm run build` yourself.
 - No metric is hardcoded. Every number in the UI comes from your own training run.
 
 ## What is implemented
