@@ -1,0 +1,11 @@
+backend/data/raw/*.csv
+backend/data/processed/*
+backend/artifacts/*
+backend/reports/*
+!**/.gitkeep
+__pycache__/
+.venv/
+.env
+node_modules/
+frontend/dist/
+.pytest_cache/
