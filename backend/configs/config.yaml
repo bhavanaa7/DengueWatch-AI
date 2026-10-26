@@ -1,0 +1,53 @@
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  artifacts_dir: artifacts
+  reports_dir: reports
+files:
+  features: dengue_features_train.csv
+  labels: dengue_labels_train.csv
+cities: [sj, iq]
+city_names: {sj: San Juan, iq: Iquitos}
+horizons: [1, 2, 4, 8]
+seed: 42
+features:
+  lags: [1, 2, 3, 4, 6, 8, 12]
+  case_lags: [0, 1, 2, 3, 4, 8, 12, 52]
+  rolling_windows: [3, 4, 8, 12]
+  climate_vars:
+    - precipitation_amt_mm
+    - reanalysis_air_temp_k
+    - reanalysis_avg_temp_k
+    - reanalysis_max_air_temp_k
+    - reanalysis_min_air_temp_k
+    - reanalysis_relative_humidity_percent
+    - reanalysis_specific_humidity_g_per_kg
+    - reanalysis_dew_point_temp_k
+    - station_avg_temp_c
+    - station_precip_mm
+    - ndvi_ne
+    - ndvi_nw
+validation:
+  holdout_fraction: 0.2
+  n_folds: 4
+  min_train_weeks: 260
+  selection_metric: mae
+risk:
+  medium_percentile: 50
+  high_percentile: 80
+  outbreak_percentile: 90
+models:
+  random_forest: {n_estimators: 300, max_depth: 8, min_samples_leaf: 5, n_jobs: -1}
+  xgboost: {n_estimators: 300, max_depth: 3, learning_rate: 0.05, subsample: 0.8, colsample_bytree: 0.8}
+uncertainty:
+  coverage: 0.8
+city_coords:            # city-centre coordinates for the map only (no sub-city detail)
+  sj: {lat: 18.4655, lon: -66.1057}
+  iq: {lat: -3.7437, lon: -73.2516}
+population:             # fill with official figures to enable population-normalised ranking; null = not provided
+  sj: null
+  iq: null
+population_source: ""   # e.g. "National census 20XX" -- cite where your numbers come from
+tracking:
+  enabled: true         # logs runs to ./artifacts/mlruns if mlflow is installed; skipped otherwise
+  experiment: denguewatch
